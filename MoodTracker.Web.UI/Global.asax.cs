@@ -1,3 +1,5 @@
+using MoodTracker.Core.Initialize;
+using MoodTracker.Web.UI.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Unity;
+using Unity.AspNet.Mvc;
 
 namespace MoodTracker.Web.UI
 {
@@ -12,10 +16,28 @@ namespace MoodTracker.Web.UI
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            var container = UnityConfig.GetConfiguredContainer();
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            var mapper = AutoMapperConfig.Initialize().CreateMapper();
+            container.RegisterInstance(mapper);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected virtual void Application_End(object sender, EventArgs e)
+        {
+            Application.GetContainer().Dispose();
+        }
+
+        protected virtual void Application_EndRequest(object sender, EventArgs e)
+        {
+            foreach (var item in HttpContext.Current.Items.Values)
+            {
+                var disposableItem = item as IDisposable;
+
+                disposableItem?.Dispose();
+            }
         }
     }
 }

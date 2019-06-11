@@ -21,7 +21,7 @@ namespace MoodTracker.Web.UI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MoodTracker", throwIfV1Schema: false)
         {
         }
 
