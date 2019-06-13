@@ -1,0 +1,35 @@
+﻿@model MoodTracker.Entities.ViewModel.ActivityDashboardViewModel
+
+@{
+    ViewBag.Title = "Unarchive";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal">
+        <div class="pageHeading">
+            <h2>Activity</h2>
+            <p>
+                Are you sure you want to unarchive this?
+            </p>
+        </div>
+
+        <div class="row form">
+            <div class="col-lg-12">
+                @Html.LabelFor(model => model.Title)
+                @Html.Label(Model.Title)
+            </div>
+        </div>
+
+        <div class="form-action">
+            <input type="submit" value="Unarchive" class="btn btn-primary" />
+        </div>
+
+
+        <div class="backAction">
+            @Html.ActionLink("<< Back to Current List", "Index")
+        </div>
+    </div>
+}

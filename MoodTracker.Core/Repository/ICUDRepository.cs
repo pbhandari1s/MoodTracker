@@ -11,8 +11,8 @@ namespace MoodTracker.Core.Repository
     {
         void Insert(T entity);
         void Update(T entity);
-        void Delete(TId id);
+        void Archive(TId id);
         void Unarchive(TId id);
-        void PermanentDelete(TId id);
+        void Delete(TId id);
     }
 }

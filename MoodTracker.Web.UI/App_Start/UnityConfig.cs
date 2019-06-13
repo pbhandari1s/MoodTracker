@@ -1,8 +1,7 @@
 using MoodTracker.Core.Helper;
 using MoodTracker.Core.Initialize;
 using System;
-
-using Unity;
+using Microsoft.Practices.Unity;
 
 namespace MoodTracker.Web.UI
 {

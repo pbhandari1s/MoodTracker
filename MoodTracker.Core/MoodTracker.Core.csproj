@@ -74,6 +74,7 @@
     <Compile Include="Infrastructure\BusinessRule.cs" />
     <Compile Include="Infrastructure\BusinessRuleValidationBase.cs" />
     <Compile Include="Infrastructure\EntityBase.cs" />
+    <Compile Include="Infrastructure\HttpContextLifetimeManager.cs" />
     <Compile Include="Infrastructure\IAggregateRoot.cs" />
     <Compile Include="Infrastructure\IArchivable.cs" />
     <Compile Include="Infrastructure\IAuditLog.cs" />

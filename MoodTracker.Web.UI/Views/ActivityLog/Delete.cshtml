@@ -1,0 +1,41 @@
+﻿@model MoodTracker.Entities.ViewModel.ActivityLogViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.ActivityId)
+    <div class="form-horizontal">
+        <div class="pageHeading">
+            <h2>Activity</h2>
+            <p>
+                Are you sure you want to delete this?
+            </p>
+        </div>
+
+        <div class="row form">
+            <div class="col-lg-12">
+                @Html.LabelFor(model => model.Mood)
+                @Html.Label(Model.Mood.ToString())
+            </div>
+
+            <div class="col-lg-12">
+                @Html.LabelFor(model => model.Note)
+                @Html.Label(Model.Note)
+            </div>
+        </div>
+
+        <div class="form-action">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+        </div>
+
+
+        <div class="backAction">
+            @Html.ActionLink("<< Back to Current List", "Index")
+        </div>
+    </div>
+}

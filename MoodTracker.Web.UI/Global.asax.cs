@@ -7,8 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Unity;
-using Unity.AspNet.Mvc;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Mvc;
 
 namespace MoodTracker.Web.UI
 {

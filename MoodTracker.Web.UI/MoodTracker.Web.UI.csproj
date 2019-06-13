@@ -58,6 +58,9 @@
     <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
@@ -125,9 +128,6 @@
     </Reference>
     <Reference Include="Unity.Container, Version=5.10.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.Container.5.10.3\lib\net47\Unity.Container.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mvc, Version=5.10.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Mvc.5.10.1\lib\net47\Unity.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
@@ -201,6 +201,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
+    <Compile Include="Controllers\ActivityLogController.cs" />
+    <Compile Include="Controllers\ActivityTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -269,6 +272,24 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ActivityType\Create.cshtml" />
+    <Content Include="Views\ActivityType\Edit.cshtml" />
+    <Content Include="Views\ActivityType\Index.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Activity\Create.cshtml" />
+    <Content Include="Views\Activity\Edit.cshtml" />
+    <Content Include="Views\ActivityType\Archive.cshtml" />
+    <Content Include="Views\ActivityType\Unarchive.cshtml" />
+    <Content Include="Views\ActivityType\Delete.cshtml" />
+    <Content Include="Views\Activity\Archive.cshtml" />
+    <Content Include="Views\Activity\Unarchive.cshtml" />
+    <Content Include="Views\Activity\Delete.cshtml" />
+    <Content Include="Views\ActivityLog\Index.cshtml" />
+    <Content Include="Views\ActivityLog\Create.cshtml" />
+    <Content Include="Views\ActivityLog\Edit.cshtml" />
+    <Content Include="Views\ActivityLog\Archive.cshtml" />
+    <Content Include="Views\ActivityLog\Delete.cshtml" />
+    <Content Include="Views\ActivityLog\Unarchive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,6 +315,10 @@
     <ProjectReference Include="..\MoodTracker.Data\MoodTracker.Data.csproj">
       <Project>{439257CE-C6F4-4233-A840-FBAAAD8ECBE6}</Project>
       <Name>MoodTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoodTracker.Entities\MoodTracker.Entities.csproj">
+      <Project>{B45A0212-E39E-4A08-B31D-52E20ADB6FCF}</Project>
+      <Name>MoodTracker.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

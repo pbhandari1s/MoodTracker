@@ -1,0 +1,42 @@
+﻿@model MoodTracker.Entities.ViewModel.ActivityTypeViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="pageHeading">
+            <h2>Activity Type</h2>
+            <p>
+                Update Activity Type information. Please update the type of the activity and Click Save.
+                You will be able to select the activity types while entering activities.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form">
+            <div class="col-lg-12">
+                @Html.LabelFor(model => model.Type)
+                <span class="required">*</span>
+                @Html.EditorFor(model => model.Type)
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-action">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+
+        <div class="backAction">
+            @Html.ActionLink("<< Back to Current List", "Index")
+        </div>
+    </div>
+}

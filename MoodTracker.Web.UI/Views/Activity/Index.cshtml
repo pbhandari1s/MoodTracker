@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MoodTracker.Entities.ViewModel.ActivityDashboardViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.ActionLink("Add New Activity", "create", "activity")
+<div class="recentActivities">
+    @foreach (var activity in Model)
+    {
+    <div class="col-lg-3">
+        @activity.Title
+        <br />
+        @activity.DueDate
+        @Html.ActionLink("View Activity", "index", "activity", new { id = activity.Id }, null)
+        @Html.ActionLink("Edit", "edit", "activity", new { id = activity.Id }, null)
+        @Html.ActionLink("Archive", "archive", "activity", new { id = activity.Id }, null)
+    </div>
+    }
+</div>

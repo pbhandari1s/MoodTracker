@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MoodTracker.Entities.ViewModel.ActivityTypeViewModel>
+@{
+    ViewBag.Title = "Activity Types";
+}
+
+<h2>Activity Types</h2>
+
+@Html.ActionLink("Add New Activity Type", "create", "activitytype")
+
+@foreach (var activityType in Model)
+{
+    <p>@activityType.Type</p>
+    @Html.ActionLink("Edit", "edit", "activitytype", new { id = activityType.Id }, null)
+    @Html.ActionLink("Archive", "archive", "activitytype", new { id = activityType.Id }, null)
+}
+

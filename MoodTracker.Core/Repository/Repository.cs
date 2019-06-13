@@ -66,7 +66,7 @@ namespace MoodTracker.Core.Repository
             _context.Entry(entity).State = EntityState.Added;
         }
 
-        public virtual void Delete(TId id)
+        public virtual void Archive(TId id)
         {
             var entityToDelete = DbSet.Find(id);
 
@@ -91,7 +91,7 @@ namespace MoodTracker.Core.Repository
             Update(entityToUnarchive);
         }
 
-        public virtual void Delete(T entityToDelete)
+        public virtual void Archive(T entityToDelete)
         {
             var archive = entityToDelete as IArchivable;
 
@@ -107,7 +107,7 @@ namespace MoodTracker.Core.Repository
             Update(entityToDelete);
         }
 
-        public virtual void PermanentDelete(TId id)
+        public virtual void Delete(TId id)
         {
             var entityToDelete = DbSet.Find(id);
             DbSet.Remove(entityToDelete);

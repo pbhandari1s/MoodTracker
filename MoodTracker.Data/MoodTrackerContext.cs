@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodTracker.Entities.Domain;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -15,6 +16,10 @@ namespace MoodTracker.Data
             //Database.SetInitializer<CoalitionManagerContext>(new CoalitionManagerDBInitializer<CoalitionManagerContext>());
             //Database.Initialize(force: true);
         }
+
+        public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityLog> ActivityLogs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,0 +1,86 @@
+﻿@model MoodTracker.Entities.ViewModel.ActivityViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#DueDate').datetimepicker();
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="pageHeading">
+            <h2>Activity</h2>
+            <p>
+                Update Activity information. Please enter the activity information and Click Save.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form">
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.ActivityTypeId)
+                <span class="required">*</span>
+                @Html.DropDownListFor(model => model.ActivityTypeId, ViewBag.ActivityTypes as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ActivityTypeId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.Title)
+                <span class="required">*</span>
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form">
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.GradeWorth)
+                <span class="required">*</span>
+                @Html.EditorFor(model => model.GradeWorth)
+                @Html.ValidationMessageFor(model => model.GradeWorth, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.CourseInfo)
+                <span class="required">*</span>
+                @Html.EditorFor(model => model.CourseInfo)
+                @Html.ValidationMessageFor(model => model.CourseInfo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row form">
+            <div class="col-lg-6">
+                @Html.LabelFor(model => model.InitialMood)
+                <span class="required">*</span>
+                @Html.EditorFor(model => model.InitialMood)
+                @Html.ValidationMessageFor(model => model.InitialMood, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-lg-6" id="divDueDate">
+                @Html.LabelFor(model => model.DueDate)
+                <span class="required">*</span>
+                @Html.EditorFor(model => model.DueDate)
+                @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-action">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+
+        <div class="backAction">
+            @Html.ActionLink("<< Back to Current List", "Index")
+        </div>
+    </div>
+}
