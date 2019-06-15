@@ -41,13 +41,27 @@ namespace MoodTracker.Web.UI.Controllers
         {
             try
             {
-                ActivityService.Insert(activity);
-                TempData["UserMessage"] = new CRUDNotification()
+                if(ModelState.IsValid)
                 {
-                    NotificationType = CRUDNotification.NotificationTypes.Success,
-                    Message = "Activity Added Successfully."
-                };
-                return RedirectToAction("Index");
+                    ActivityService.Insert(activity);
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Success,
+                        Message = "Activity Added Successfully."
+                    };
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Warning,
+                        Message = "Please fix issues on the page to continue."
+                    };
+                    var activityTypes = ActivityTypeService.GetAllActive();
+                    ViewBag.ActivityTypes = new SelectList(activityTypes, "Id", "Type");
+                    return View(activity);
+                }
             }
             catch (Exception ex)
             {
@@ -56,6 +70,8 @@ namespace MoodTracker.Web.UI.Controllers
                     NotificationType = CRUDNotification.NotificationTypes.Error,
                     Message = "Error creating Activity " + ex.Message
                 };
+                var activityTypes = ActivityTypeService.GetAllActive();
+                ViewBag.ActivityTypes = new SelectList(activityTypes, "Id", "Type");
                 return View(activity);
             }
         }
@@ -73,13 +89,27 @@ namespace MoodTracker.Web.UI.Controllers
         {
             try
             {
-                ActivityService.Update(activity);
-                TempData["UserMessage"] = new CRUDNotification()
+                if(ModelState.IsValid)
                 {
-                    NotificationType = CRUDNotification.NotificationTypes.Success,
-                    Message = "Activity Updated Successfully."
-                };
-                return RedirectToAction("Index");
+                    ActivityService.Update(activity);
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Success,
+                        Message = "Activity Updated Successfully."
+                    };
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Warning,
+                        Message = "Please fix issues on the page to continue."
+                    };
+                    var activityTypes = ActivityTypeService.GetAllActive();
+                    ViewBag.ActivityTypes = new SelectList(activityTypes, "Id", "Type");
+                    return View(activity);
+                }
             }
             catch (Exception ex)
             {
@@ -88,6 +118,8 @@ namespace MoodTracker.Web.UI.Controllers
                     NotificationType = CRUDNotification.NotificationTypes.Error,
                     Message = "Error updating Activity " + ex.Message
                 };
+                var activityTypes = ActivityTypeService.GetAllActive();
+                ViewBag.ActivityTypes = new SelectList(activityTypes, "Id", "Type");
                 return View(activity);
             }
         }

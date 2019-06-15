@@ -14,6 +14,7 @@ namespace MoodTracker.Entities.ViewModel
         public int Id { get; set; }
         [ScaffoldColumn(false)]
         public int ActivityId { get; set; }
+        [Required(ErrorMessage = "* Current Mood is required.", AllowEmptyStrings = false)]
         public int Mood { get; set; }
         public string Note { get; set; }
 

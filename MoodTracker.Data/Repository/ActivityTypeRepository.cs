@@ -13,7 +13,7 @@ namespace MoodTracker.Data.Repository
 {
     public class ActivityTypeRepository : Repository<ActivityType, int>, IActivityTypeRepository
     {
-        public ActivityTypeRepository(IContext context) : base(context)
+        public ActivityTypeRepository(IContext context, IAuthenticatedUser<int> authenticatedUser) : base(context, authenticatedUser)
         {
         }
 

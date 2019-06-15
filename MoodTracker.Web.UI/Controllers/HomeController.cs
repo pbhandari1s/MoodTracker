@@ -13,6 +13,10 @@ namespace MoodTracker.Web.UI.Controllers
     {
         [Dependency]
         public IActivityService ActivityService { get; set; }
+
+        [Dependency]
+        public IActivityTypeService ActivityTypeService { get; set; }
+
         public ActionResult Index()
         {
             if(User.Identity.IsAuthenticated)
@@ -22,13 +26,13 @@ namespace MoodTracker.Web.UI.Controllers
                 {
                     recentActivity = ActivityService.GetDashboardInfo();
                 }
+                ViewBag.ActivityTypeCount = ActivityTypeService.GetTotalCount();
                 return View(recentActivity);
             }
             else
             {
                 return RedirectToAction("login", "account");
             }
-           
         }
 
         public ActionResult About()
@@ -39,6 +43,25 @@ namespace MoodTracker.Web.UI.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Error(int id = 0)
+        {
+            if (id == 404)
+            {
+                ViewBag.Message = "Page Not Found";
+            }
+            else if(id == 204)
+            {
+                ViewBag.Message = "Record Not Found";
+            }
+            else
+            {
+                ViewBag.Message = "Error";
+            }
+
+            return View(id);
         }
     }
 }

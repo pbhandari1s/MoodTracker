@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = ViewBag.Message;
+}
+
+<div class="form-small row">
+    <form class="public-form">
+        <h4 class="text-center">Mood Tracker - @ViewBag.Message</h4>
+        <hr />
+        <div class="col-lg-12">
+            @if (Model == 404)
+            {
+                <p>The page you are looking for doesn't exist.</p>
+            }
+            else if(Model == 204)
+            {
+                <p>Record you are looking for doesn't exist or you don't have permission to access this.</p>
+            }
+            else
+            {
+                <p>An error occured while processing your request. If error continues, please contact support for assistance.</p>
+            }
+        </div>
+    </form>
+</div>
+

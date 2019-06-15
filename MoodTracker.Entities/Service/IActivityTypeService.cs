@@ -18,5 +18,6 @@ namespace MoodTracker.Entities.Service
         void Unarchive(int id);
         void Delete(int id);
         ActivityTypeViewModel GetById(int id);
+        int GetTotalCount();
     }
 }

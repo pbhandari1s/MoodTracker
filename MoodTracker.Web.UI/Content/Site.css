@@ -302,6 +302,55 @@ input[type=text], select, textarea, input[type=number], input[type=password], in
     padding-top: 30px;
 }
 
+.emptyMessage
+{
+    padding:30px 0px;
+    text-align:center;
+    font-style:italic;
+}
+
+.validation-summary-errors ul{
+    list-style:none;
+    padding:5px 0px;
+    border:1px solid;
+}
+
+.crudalert {
+    border: 1px solid;
+    padding: 20px;
+    position: fixed;
+    width: 500px;
+    color: #FFF !important;
+    text-align: center;
+    z-index: 11111;
+    margin: 0 auto;
+    font-size: 18px;
+    display: none;
+    position: fixed;
+    bottom:60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.crudalert.alert-success {
+    background-color: green;
+}
+
+.crudalert.alert-error {
+    background-color: #a94442;
+}
+
+.crudalert.alert-warning {
+    color: red !important;
+}
+
+.hideIcon .glyphicon {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    font-size: 25px;
+}
+
 @media screen and (max-width: 991px) {
     .dashboardList li {
         width: 100%;

@@ -34,13 +34,26 @@ namespace MoodTracker.Web.UI.Controllers
         {
             try
             {
-                ActivityTypeService.Insert(activityType);
-                TempData["UserMessage"] = new CRUDNotification()
+                if(ModelState.IsValid)
                 {
-                    NotificationType = CRUDNotification.NotificationTypes.Success,
-                    Message = "Activity Type Added Successfully."
-                };
-                return RedirectToAction("Index");
+                    ActivityTypeService.Insert(activityType);
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Success,
+                        Message = "Activity Type Added Successfully."
+                    };
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Warning,
+                        Message = "Please fix issues on the page to continue."
+                    };
+                    return View(activityType);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -64,13 +77,26 @@ namespace MoodTracker.Web.UI.Controllers
         {
             try
             {
-                ActivityTypeService.Update(activityType);
-                TempData["UserMessage"] = new CRUDNotification()
+                if(ModelState.IsValid)
                 {
-                    NotificationType = CRUDNotification.NotificationTypes.Success,
-                    Message = "Activity Type Updated Successfully."
-                };
-                return RedirectToAction("Index");
+                    ActivityTypeService.Update(activityType);
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Success,
+                        Message = "Activity Type Updated Successfully."
+                    };
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["UserMessage"] = new CRUDNotification()
+                    {
+                        NotificationType = CRUDNotification.NotificationTypes.Warning,
+                        Message = "Please fix issues on the page to continue."
+                    };
+                    return View(activityType);
+                }
+                
             }
             catch (Exception ex)
             {

@@ -68,6 +68,13 @@ namespace MoodTracker.Entities.Service
             UnitOfWork.SaveChanges();
         }
 
+        public int GetTotalCount()
+        {
+            var records = Repository.GetAll().Where(x => x.IsArchived == false);
+
+            return records.Count();
+        }
+
         public TViewModel GetById(TId id)
         {
             var item = Repository.GetById(id);

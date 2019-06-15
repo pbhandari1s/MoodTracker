@@ -4,12 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<script type="text/javascript">
-    $(function () {
-        $('#divDueDate').datetimepicker();
-    });
-</script>
-
 @using (Html.BeginForm("create", "activity", FormMethod.Post, new { @class="form-big"}))
 {
     @Html.AntiForgeryToken()
@@ -45,14 +39,12 @@
         <div class="row form">
             <div class="col-lg-4">
                 @Html.Label("Grade Worth")
-                <span class="required">*</span>
                 @Html.EditorFor(model => model.GradeWorth)
                 @Html.ValidationMessageFor(model => model.GradeWorth, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-lg-4">
                 @Html.Label("Course Info")
-                <span class="required">*</span>
                 @Html.EditorFor(model => model.CourseInfo)
                 @Html.ValidationMessageFor(model => model.CourseInfo, "", new { @class = "text-danger" })
             </div>

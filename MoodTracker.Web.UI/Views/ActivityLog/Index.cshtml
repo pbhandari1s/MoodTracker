@@ -9,43 +9,52 @@
 
     <div class="grid">
         <div class="row gridHeading hidden-xs">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 Date Added
             </div>
             <div class="col-sm-2">
                 <b>Mood</b>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <b>Note</b>
             </div>
         </div>
         <div class="recentActivities">
-            @foreach (var activityLog in Model.ActivityLogs)
+            @if (Model.ActivityLogs.Count() > 0)
             {
-                var imageName = "~/Images/mood" + @activityLog.Mood + ".png";
-                <div class="row gridRow">
-                    <div class="col-sm-2">
-                        <span class="visible-xs"><u>Creation Stamp</u></span>
-                        @activityLog.CreationStamp
-                    </div>
-                    <div class="col-sm-2">
-                        <div>
-                            <span class="visible-xs"><u>Mood</u></span>
-                            <img src=@Url.Content(imageName) alt="Mood Icon" class="sm-icon" />
+                foreach (var activityLog in Model.ActivityLogs)
+                {
+                    var imageName = "~/Images/mood" + @activityLog.Mood + ".png";
+                    <div class="row gridRow">
+                        <div class="col-sm-3">
+                            <span class="visible-xs"><u>Creation Stamp</u></span>
+                            @activityLog.CreationStamp
+                        </div>
+                        <div class="col-sm-2">
+                            <div>
+                                <span class="visible-xs"><u>Mood</u></span>
+                                <img src=@Url.Content(imageName) alt="Mood Icon" class="sm-icon" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="visible-xs"><u>Note</u></span>
+                                @activityLog.Note
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            @Html.ActionLink(" Edit", "edit", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-edit" })
+                            @Html.ActionLink(" Archive", "archive", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-archive" })
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div>
-                            <span class="visible-xs"><u>Note</u></span>
-                            @activityLog.Note
-                        </div>
-                        
-                    </div>
-                    <div class="col-sm-4 text-right">
-                        @Html.ActionLink(" Edit", "edit", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-edit" })
-                        @Html.ActionLink(" Archive", "archive", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-archive" })
-                    </div>
-                </div>
+                }
+            }
+            else
+            {
+                <p class="emptyMessage">
+                    You don't have any logs/mood added for this activity yet. Please don't forget to record mood while performing activities.
+                </p>
             }
         </div>
 

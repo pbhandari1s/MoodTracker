@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Mood Tracker</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/Design.js" type="text/javascript"></script>
 
@@ -32,7 +33,33 @@
     }
     <div class="container body-content">
         @RenderBody()
+        @if (TempData["UserMessage"] != null)
+        {
+            var message = (MoodTracker.Core.Helper.CRUDNotification)TempData["UserMessage"];
+        <div class="no-print crudalert @message.CssClassName">
+            <div class="hideIcon">
+                <a onclick='hideNotification()' class="@message.CssClassName">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                </a>
+            </div>
+            @message.Title - @Html.Raw(message.Message)
+        </div>
 
+            <script>
+                $(document).ready(function () {
+                    DisplayNotification();
+                });
+                function DisplayNotification() {
+                    $(".crudalert").fadeIn("slow");
+                    setTimeout(function () {
+                        $(".crudalert").fadeOut("slow");
+                    }, 60000);
+                };
+                function hideNotification() {
+                    $(".crudalert").fadeOut("slow")
+                }
+            </script>
+        }
         <footer>
             <p>
                 &copy; @DateTime.Now.Year - <a href="~/Home/About">Mood Tracker</a>
@@ -42,11 +69,9 @@
                     <a href="~/Account/Register">Register Account</a>
                     <span>|</span>
                     <a href="~/Account/Login">Login</a>
-                    <span>|</span>
-                    <a href="~/Account/ForgotPassword">Forgot Password</a>
                 }
                 <span>|</span>
-                <a href="~/Home/About">Project Info</a>
+                <a href="mailto:pbhandari1s@semo.edu?Subject=Mood%20Tracker" target="_top">Email Support</a>
             </p>
         </footer>
     </div>

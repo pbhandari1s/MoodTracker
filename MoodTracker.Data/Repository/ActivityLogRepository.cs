@@ -1,4 +1,5 @@
-﻿using MoodTracker.Core.Repository;
+﻿using MoodTracker.Core.Infrastructure;
+using MoodTracker.Core.Repository;
 using MoodTracker.Core.UnitOfWork;
 using MoodTracker.Entities.Domain;
 using MoodTracker.Entities.Repository;
@@ -12,7 +13,7 @@ namespace MoodTracker.Data.Repository
 {
     public class ActivityLogRepository : Repository<ActivityLog, int>, IActivityLogRepository
     {
-        public ActivityLogRepository(IContext context) : base(context)
+        public ActivityLogRepository(IContext context, IAuthenticatedUser<int> authenticatedUser) : base(context, authenticatedUser)
         {
 
         }

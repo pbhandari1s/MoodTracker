@@ -9,5 +9,6 @@ namespace MoodTracker.Core.Infrastructure
     public interface IEntity<TId>
     {
         TId Id { get; set; }
+        string Addedby { get; set; }
     }
 }

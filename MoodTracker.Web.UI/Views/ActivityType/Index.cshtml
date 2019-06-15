@@ -7,13 +7,15 @@
     <h2>Activity Types</h2>
     @Html.ActionLink("+ Add New Activity Type", "create", "activitytype", null, new { @class = "main-link" })
 
-    <div class="grid">
-        <div class="row gridHeading hidden-xs">
-            <div class="col-sm-8">
-                <b>Activity Type</b>
-            </div>
+<div class="grid">
+    <div class="row gridHeading hidden-xs">
+        <div class="col-sm-8">
+            <b>Activity Type</b>
         </div>
-        @foreach (var activityType in Model)
+    </div>
+    @if (Model.Count() > 0)
+    {
+        foreach (var activityType in Model)
         {
             <div class="row gridRow">
                 <div class="col-sm-8">
@@ -26,7 +28,15 @@
                 </div>
             </div>
         }
-    </div>
+    }
+    else
+    {
+        <p class="emptyMessage">
+            You don't have any activity types yet. Please add some activity types you would like to record activities.
+        </p>
+    }
+
+</div>
 
     <div class="backAction">
         @Html.ActionLink("<< Back to Home", "Index", "Home")

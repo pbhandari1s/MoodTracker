@@ -9,6 +9,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
+using MoodTracker.Core.CustomException;
 
 namespace MoodTracker.Web.UI
 {
@@ -37,6 +38,41 @@ namespace MoodTracker.Web.UI
                 var disposableItem = item as IDisposable;
 
                 disposableItem?.Dispose();
+            }
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError().GetBaseException();
+
+            HttpException httpException = exception as HttpException;
+            RecordNotFoundException recordException = exception as RecordNotFoundException;
+
+            if (httpException != null)
+            {
+                Server.ClearError();
+                switch (httpException.GetHttpCode())
+                {
+                    case 404:
+                        {
+                            Response.Redirect("~/home/error?id=404");
+                        }
+                        break;
+
+                    default:
+                        {   
+                            Response.Redirect("~/home/error/");
+                        }
+                        break;
+                }
+            }
+            else if(recordException != null)
+            {
+                Response.Redirect("~/home/error?id=204");
+            }
+            else
+            {
+                Response.Redirect("~/home/error/");
             }
         }
     }

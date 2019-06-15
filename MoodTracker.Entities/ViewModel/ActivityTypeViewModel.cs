@@ -12,7 +12,7 @@ namespace MoodTracker.Entities.ViewModel
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
-        [Required(ErrorMessage = "* Required", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "* Activity Type is required", AllowEmptyStrings = false)]
         public string Type { get; set; }
         [ScaffoldColumn(false)]
         public bool IsArchived { get; set; }

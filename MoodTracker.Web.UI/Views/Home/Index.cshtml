@@ -7,20 +7,30 @@
     <div class="dashboardArea">
         <h3>What would you look like to do now?</h3>
         <ul class="list-group dashboardList">
-            <li>
-                <a href="@Url.Action("create", "activity")">
-                    <img src="~/Images/new_activity.png" alt="New Activity" class="md-icon" />
-                    <br />
-                    Add Activity
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("index", "activity")">
-                    <img src="~/Images/activity_list.png" alt="New Activity" class="md-icon" />
-                    <br />
-                    Activities
-                </a>
-            </li>
+            @if (ViewBag.ActivityTypeCount > 0)
+            {
+                <li>
+                    <a href="@Url.Action("create", "activity")">
+                        <img src="~/Images/new_activity.png" alt="New Activity" class="md-icon" />
+                        <br />
+                        Add Activity
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("index", "activity")">
+                        <img src="~/Images/activity_list.png" alt="New Activity" class="md-icon" />
+                        <br />
+                        Activities
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <p>You have not setup activity types yet. Please add activity types first so you can add activities and start recording mood for the activities.</p>
+                </li>
+            }
+
             <li>
                 <a href="@Url.Action("index", "activitytype")">
                     <img src="~/Images/activity_type.png" alt="New Activity" class="md-icon" />
@@ -30,24 +40,27 @@
             </li>
         </ul>
 
-        <div class="recentEntries">
-            <h3>Activities Due Date Coming Soon</h3>
-            @foreach (var activity in Model)
-            {
-                <div class="recentPod">
-                    <p class="podTitle">
-                        @activity.Title
-                    </p>
-                    <p class="secondPodContent">
-                        @activity.DueDate
-                    </p>
-                    @Html.ActionLink("View Detail", "detail", "activity", new { id = activity.Id }, new { @class = "pod-link" })
-                    <span>|</span>
-                    @Html.ActionLink("View Log", "index", "activitylog", new { id = activity.Id }, new { @class = "pod-link" })
-                </div>
-            }
-        </div>
+        @if (Model.Count() > 0)
+        {
+            <div class="recentEntries">
+                <h3>Activities Due Date Coming Soon</h3>
+                @foreach (var activity in Model)
+                {
+                    <div class="recentPod">
+                        <p class="podTitle">
+                            @activity.Title
+                        </p>
+                        <p class="secondPodContent">
+                            @activity.DueDate
+                        </p>
+                        @Html.ActionLink("View Detail", "detail", "activity", new { id = activity.Id }, new { @class = "pod-link" })
+                        <span>|</span>
+                        @Html.ActionLink("View Log", "index", "activitylog", new { id = activity.Id }, new { @class = "pod-link" })
+                    </div>
+                }
+            </div>
 
-        @Html.ActionLink("View All", "index", "activity", null, new { @class = "btn btn-lg btn-primary" })
+            @Html.ActionLink("View All", "index", "activity", null, new { @class = "btn btn-lg btn-primary" })
+        }
     </div>
 }

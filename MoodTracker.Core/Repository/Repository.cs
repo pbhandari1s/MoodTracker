@@ -15,13 +15,14 @@ namespace MoodTracker.Core.Repository
     {
         internal DbSet<T> DbSet;
         private readonly DbContext _context;
-
-        protected Repository(IContext context)
+        private readonly IAuthenticatedUser<int> _authenticatedUsers;
+        protected Repository(IContext context, IAuthenticatedUser<int> authenticatedUser)
         {
             Contract.Requires<ArgumentNullException>(context != null, nameof(context));
 
             _context = context.Context;
             this.DbSet = _context.Set<T>();
+            _authenticatedUsers = authenticatedUser;
             
         }
 
@@ -46,8 +47,10 @@ namespace MoodTracker.Core.Repository
 
             if (orderBy != null)
             {
+                query = query.Where(x => x.Addedby == _authenticatedUsers.Id);
                 return orderBy(query).ToList();
             }
+            query = query.Where(x => x.Addedby == _authenticatedUsers.Id);
             return query.ToList();
         }
 
@@ -58,7 +61,11 @@ namespace MoodTracker.Core.Repository
 
         public virtual T GetById(TId id)
         {
-            return DbSet.Find(id);
+            var result = DbSet.Find(id);
+            if (result.Addedby == _authenticatedUsers.Id)
+                return result;
+
+            throw new RecordNotFoundException();
         }
 
         public virtual void Insert(T entity)

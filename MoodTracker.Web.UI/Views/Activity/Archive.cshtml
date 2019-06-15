@@ -21,7 +21,7 @@
                 <div>
                     <u>@Html.Label("Title")</u>
                 </div>
-                @Html.Label(Model.Title)
+                @Html.Label(Model.Title ?? "")
             </div>
         </div>
 
