@@ -23,7 +23,7 @@ namespace MoodTracker.Data
 
         public void SetAuditTrail()
         {
-            var now = DateTime.UtcNow;
+            var now = DateTime.Now;
             HandleUpdates(now);
             HandleInserts(now);
         }

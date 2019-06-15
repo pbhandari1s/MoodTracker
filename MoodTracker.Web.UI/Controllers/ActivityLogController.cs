@@ -17,19 +17,44 @@ namespace MoodTracker.Web.UI.Controllers
         public IActivityLogService ActivityLogService { get; set; }
         
         // GET: ActivityLog
-        public ActionResult Index(int id)
+        public ActionResult Index(int id=0)
         {
-            var activityLogs = ActivityLogService.GetByActivityIdActive(id);
-            return View(activityLogs);
+            if (id > 0)
+            {
+                var activityLogs = ActivityLogService.GetByActivityIdActive(id);
+                var activityTitle = "";
+                try
+                {
+                    activityTitle = activityLogs.FirstOrDefault().Activity.Title;
+                }
+                catch
+                {
+
+                }
+                var activityLogIndex = new ActivityLogIndexViewModel()
+                {
+                    ActivityId = id,
+                    ActivityTitle = activityTitle,
+                    ActivityLogs = activityLogs
+                };
+                return View(activityLogIndex);
+            }
+            else
+                return RedirectToAction("index", "activity");
         }
 
-        public ActionResult Create(int id)
+        public ActionResult Create(int id=0)
         {
-            var activityLog = new ActivityLogViewModel()
+            if(id>0)
             {
-                ActivityId = id
-            };
-            return View(activityLog);
+                var activityLog = new ActivityLogViewModel()
+                {
+                    ActivityId = id
+                };
+                return View(activityLog);
+            }
+            else
+                return RedirectToAction("index", "activity");
         }
 
         [HttpPost]
@@ -56,11 +81,17 @@ namespace MoodTracker.Web.UI.Controllers
             }
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id=0)
         {
-            var activityLog = ActivityLogService.GetById(id);
+            if(id>0)
+            {
+                var activityLog = ActivityLogService.GetById(id);
 
-            return View(activityLog);
+                return View(activityLog);
+            }
+            else
+                return RedirectToAction("index", "activity");
+            
         }
         
         [HttpPost]
@@ -87,10 +118,15 @@ namespace MoodTracker.Web.UI.Controllers
             }
         }
 
-        public ActionResult Archive(int id)
+        public ActionResult Archive(int id=0)
         {
-            var activityLog = ActivityLogService.GetById(id);
-            return View(activityLog);
+            if(id>0)
+            {
+                var activityLog = ActivityLogService.GetById(id);
+                return View(activityLog);
+            }
+            else
+                return RedirectToAction("index", "activity");
         }
 
         [HttpPost]
@@ -117,10 +153,15 @@ namespace MoodTracker.Web.UI.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id=0)
         {
-            var activityLog = ActivityLogService.GetById(id);
-            return View(activityLog);
+            if(id>0)
+            {
+                var activityLog = ActivityLogService.GetById(id);
+                return View(activityLog);
+            }
+            else
+                return RedirectToAction("index", "activity");
         }
 
         [HttpPost]
@@ -147,10 +188,15 @@ namespace MoodTracker.Web.UI.Controllers
             }
         }
 
-        public ActionResult Unarchive(int id)
+        public ActionResult Unarchive(int id=0)
         {
-            var activityLog = ActivityLogService.GetById(id);
-            return View(activityLog);
+            if(id>0)
+            {
+                var activityLog = ActivityLogService.GetById(id);
+                return View(activityLog);
+            }
+            else
+                return RedirectToAction("index", "activity");
         }
 
         [HttpPost]

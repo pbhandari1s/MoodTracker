@@ -2,33 +2,52 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<div class="jumbotron">
-    <h1>Mood Tracker</h1>
-    <p class="lead">Mood Tracker is an application project for CS630 to track mood of students for various activities.</p>
-    <p>You can create activities and record mood at different times during the activity so as to figure out the stress level.</p>
-</div>
-
 @if (User.Identity.IsAuthenticated)
 {
-    <div class="dashboardMenu">
-        <div class="col-lg-4">
-            @Html.ActionLink("Activity Types", "index", "activitytype")
-        </div>
-        <div class="col-lg-4">
-            @Html.ActionLink("Activities", "index", "activity")
-        </div>
-    </div>
+    <div class="dashboardArea">
+        <h3>What would you look like to do now?</h3>
+        <ul class="list-group dashboardList">
+            <li>
+                <a href="@Url.Action("create", "activity")">
+                    <img src="~/Images/new_activity.png" alt="New Activity" class="md-icon" />
+                    <br />
+                    Add Activity
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("index", "activity")">
+                    <img src="~/Images/activity_list.png" alt="New Activity" class="md-icon" />
+                    <br />
+                    Activities
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("index", "activitytype")">
+                    <img src="~/Images/activity_type.png" alt="New Activity" class="md-icon" />
+                    <br />
+                    Activity Types
+                </a>
+            </li>
+        </ul>
 
-    <div class="recentActivities">
-        @foreach (var activity in Model)
-        {
-            <div class="col-lg-3">
-                @activity.Title
-                <br />
-                @activity.DueDate
-                @Html.ActionLink("View Activity", "index", "activity", new { id = activity.Id }, null)
-            </div>
-        }
+        <div class="recentEntries">
+            <h3>Activities Due Date Coming Soon</h3>
+            @foreach (var activity in Model)
+            {
+                <div class="recentPod">
+                    <p class="podTitle">
+                        @activity.Title
+                    </p>
+                    <p class="secondPodContent">
+                        @activity.DueDate
+                    </p>
+                    @Html.ActionLink("View Detail", "detail", "activity", new { id = activity.Id }, new { @class = "pod-link" })
+                    <span>|</span>
+                    @Html.ActionLink("View Log", "index", "activitylog", new { id = activity.Id }, new { @class = "pod-link" })
+                </div>
+            }
+        </div>
+
+        @Html.ActionLink("View All", "index", "activity", null, new { @class = "btn btn-lg btn-primary" })
     </div>
 }

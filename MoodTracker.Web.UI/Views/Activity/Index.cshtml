@@ -3,17 +3,42 @@
     ViewBag.Title = "Home Page";
 }
 
-@Html.ActionLink("Add New Activity", "create", "activity")
-<div class="recentActivities">
-    @foreach (var activity in Model)
-    {
-    <div class="col-lg-3">
-        @activity.Title
-        <br />
-        @activity.DueDate
-        @Html.ActionLink("View Activity", "index", "activity", new { id = activity.Id }, null)
-        @Html.ActionLink("Edit", "edit", "activity", new { id = activity.Id }, null)
-        @Html.ActionLink("Archive", "archive", "activity", new { id = activity.Id }, null)
+<div class="form-big">
+    <h2>Activities</h2>
+    @Html.ActionLink("+Add New Activity", "create", "activity", null, new { @class = "main-link" })
+
+    <div class="grid">
+        <div class="row gridHeading hidden-xs">
+            <div class="col-sm-4">
+                <b>Title</b>
+            </div>
+            <div class="col-sm-4">
+                <b>Due Date</b>
+            </div>
+        </div>
+        <div class="recentActivities">
+            @foreach (var activity in Model)
+            {
+                <div class="row gridRow">
+                    <div class="col-sm-4">
+                        <span class="visible-xs"><u>Title</u></span>
+                        @activity.Title
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="visible-xs"><u>Due Date</u></span>
+                        @activity.DueDate
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        @Html.ActionLink(" View", "detail", "activity", new { id = activity.Id }, new { @class = "btn btn-sm btn-primary btn-view" })
+                        @Html.ActionLink(" Edit", "edit", "activity", new { id = activity.Id }, new { @class = "btn btn-sm btn-primary btn-edit" })
+                        @Html.ActionLink(" Archive", "archive", "activity", new { id = activity.Id }, new { @class = "btn btn-sm btn-primary btn-archive" })
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="backAction">
+            @Html.ActionLink("<< Back to Home", "Index", "Home")
+        </div>
     </div>
-    }
 </div>

@@ -392,7 +392,7 @@ namespace MoodTracker.Web.UI.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("logoutconfirmation", "account");
         }
 
         //
@@ -452,6 +452,11 @@ namespace MoodTracker.Web.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [AllowAnonymous]
+        public ActionResult LogoutConfirmation()
+        {
+            return View();
+        }
         internal class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri)

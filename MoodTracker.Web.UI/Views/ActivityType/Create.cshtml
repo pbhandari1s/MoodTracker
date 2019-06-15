@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("create", "activitytype", FormMethod.Post, new { @class = "form-big" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -23,7 +23,7 @@
 
         <div class="row form">
             <div class="col-lg-12">
-                @Html.LabelFor(model => model.Type)
+                <u>@Html.Label("Activity Type")</u>
                 <span class="required">*</span>
                 @Html.EditorFor(model => model.Type)
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
@@ -31,7 +31,8 @@
         </div>
 
         <div class="form-action">
-            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="submit" value="Save" class="btn btn-primary btn-lg" />
+            @Html.ActionLink("Cancel", "index", "activitytype", null, new { @class = "btn btn-secondary btn-lg" })
         </div>
 
 

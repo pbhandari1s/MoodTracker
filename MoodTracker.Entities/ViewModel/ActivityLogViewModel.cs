@@ -20,5 +20,16 @@ namespace MoodTracker.Entities.ViewModel
         [ScaffoldColumn(false)]
         public bool IsArchived { get; set; }
         public virtual ActivityViewModel Activity { get; set; }
+
+        [ScaffoldColumn(false)]
+        public DateTime CreationStamp { get; set; }
+    }
+
+    public class ActivityLogIndexViewModel : IViewModel
+    {
+        public int ActivityId { get; set; }
+
+        public string ActivityTitle { get; set; }
+        public IEnumerable<ActivityLogViewModel> ActivityLogs { get; set; }
     }
 }

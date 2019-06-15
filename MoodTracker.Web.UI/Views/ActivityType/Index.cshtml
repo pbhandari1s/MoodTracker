@@ -3,14 +3,32 @@
     ViewBag.Title = "Activity Types";
 }
 
-<h2>Activity Types</h2>
+<div class="form-big">
+    <h2>Activity Types</h2>
+    @Html.ActionLink("+ Add New Activity Type", "create", "activitytype", null, new { @class = "main-link" })
 
-@Html.ActionLink("Add New Activity Type", "create", "activitytype")
+    <div class="grid">
+        <div class="row gridHeading hidden-xs">
+            <div class="col-sm-8">
+                <b>Activity Type</b>
+            </div>
+        </div>
+        @foreach (var activityType in Model)
+        {
+            <div class="row gridRow">
+                <div class="col-sm-8">
+                    <span class="visible-xs"><u>Activity Type</u></span>
+                    @activityType.Type
+                </div>
+                <div class="col-sm-4 text-right">
+                    @Html.ActionLink(" Edit", "edit", "activitytype", new { id = activityType.Id }, new { @class = "btn-edit btn btn-sm btn-primary btn-edit" })
+                    @Html.ActionLink(" Archive", "archive", "activitytype", new { id = activityType.Id }, new { @class = "btn btn-sm btn-primary btn-archive" })
+                </div>
+            </div>
+        }
+    </div>
 
-@foreach (var activityType in Model)
-{
-    <p>@activityType.Type</p>
-    @Html.ActionLink("Edit", "edit", "activitytype", new { id = activityType.Id }, null)
-    @Html.ActionLink("Archive", "archive", "activitytype", new { id = activityType.Id }, null)
-}
-
+    <div class="backAction">
+        @Html.ActionLink("<< Back to Home", "Index", "Home")
+    </div>
+</div>

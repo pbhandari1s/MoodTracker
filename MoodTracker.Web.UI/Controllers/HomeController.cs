@@ -15,25 +15,29 @@ namespace MoodTracker.Web.UI.Controllers
         public IActivityService ActivityService { get; set; }
         public ActionResult Index()
         {
-            IEnumerable<ActivityDashboardViewModel> recentActivity = new List<ActivityDashboardViewModel>();
             if(User.Identity.IsAuthenticated)
             {
-                recentActivity = ActivityService.GetDashboardInfo();
-            } 
-            return View(recentActivity);
+                IEnumerable<ActivityDashboardViewModel> recentActivity = new List<ActivityDashboardViewModel>();
+                if (User.Identity.IsAuthenticated)
+                {
+                    recentActivity = ActivityService.GetDashboardInfo();
+                }
+                return View(recentActivity);
+            }
+            else
+            {
+                return RedirectToAction("login", "account");
+            }
+           
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

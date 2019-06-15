@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("create", "activitylog", FormMethod.Post, new { @class="form-big"}))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model=>model.ActivityId)
@@ -24,21 +24,31 @@
 
         <div class="row form">
             <div class="col-lg-12">
-                @Html.LabelFor(model => model.Mood)
+                @Html.Label("Current Mood - (Please select your current mood about this activity)")
                 <span class="required">*</span>
-                @Html.EditorFor(model => model.Mood)
+                <br />
+                @for (int i = 1; i <= 5; i++)
+                {
+                    var imageName = "~/Images/mood" + i + ".png";
+
+                    <div class="icon-inline">
+                        <img src=@Url.Content(imageName) alt="Mood Icon" />
+                        @Html.RadioButtonFor(model => model.Mood, i)
+                    </div>
+                }
                 @Html.ValidationMessageFor(model => model.Mood, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-lg-12">
-                @Html.LabelFor(model => model.Note)
+                @Html.Label("Note")
                 @Html.EditorFor(model => model.Note)
                 @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-action">
-            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="submit" value="Save" class="btn btn-primary btn-lg" />
+            @Html.ActionLink("Cancel", "index", "activitylog", new { id = Model.ActivityId }, new { @class = "btn btn-secondary btn-lg" })
         </div>
 
 

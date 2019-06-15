@@ -1,8 +1,22 @@
-﻿body {
-    padding-top: 50px;
+﻿html, body {
+    margin: 0;
+    height: 100%;
+    font-family: Century;
+}
+
+h1, h2, h3, h4, h5{
+    font-family:Century;
+}
+body {
     padding-bottom: 20px;
     font-size: 16px;
+    background-color:#ccc;
 }
+
+    body.public-form {
+        background-image: url("/Images/mood_bg.jpg");
+        background-size: cover;
+    }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -23,28 +37,353 @@
 }
 
 .form-action {
-    padding: 60px 0px;
+    padding: 40px 0px;
     text-align: right;
 }
 
 .backAction {
     font-weight: bold;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+.backAction a{
+    text-transform:uppercase;
 }
 
 .btn {
-    font-size: 16px;
-    padding: 15px 30px;
     text-transform: uppercase;
-}
-
-.form-horizontal {
-    padding-top: 30px;
-}
-
-.pageHeading {
-    padding-bottom: 30px;
 }
 
 .required {
     color: red;
 }
+
+.grid
+{
+    margin-top:30px;
+}
+
+.gridRow{
+    border-bottom:1px solid;
+    border-color:gold;
+    padding:10px 0px;
+}
+
+.gridHeading {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-width: 2px;
+    border-top-color: limegreen;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    border-bottom-width: 2px;
+    border-bottom-color: red;
+}
+
+footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    background: #FFF;
+    text-align: center;
+    padding: 15px 0px 10px;
+}
+
+.form-small {
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    padding:20px;
+}
+
+.form-big {
+    margin: 0 auto;
+    background-color: #FFF;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    padding: 20px;
+    margin-bottom:150px;
+}
+
+.dashboardArea {
+    margin-bottom: 150px;
+}
+
+.form-big label{
+    padding-top:15px;
+}
+
+input[type=text], select, textarea, input[type=number], input[type=password], input[type=email], input[type=datetime] {
+    background-color: #e6e6e6 !important;
+    border: none;
+    border-radius: 5px;
+    color: #000 !important;
+    font-size: .875em !important;
+    font-weight: 500 !important;
+    padding: 10px;
+    width: 100%;
+    min-height: 35px;
+    display: block;
+}
+
+.form-small .btn-lg{
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+.btn-primary:hover{
+    background-color:green;
+}
+
+.btn-secondary{
+    border:1px solid;
+}
+
+.main-logo{
+    max-width:150px;
+}
+
+.menu-area{
+    margin-bottom:40px;
+    margin-top:10px;
+}
+
+.logout-options a{
+    font-weight:bold;
+}
+
+.footer a{
+    font-weight:bold;
+}
+
+.dashboardList li:nth-of-type(3n+2) {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.dashboardList li {
+    width: calc((100%/3) - 43px);
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px;
+    display: inline-block;
+    padding: 20px;
+    border: 1px solid;
+    vertical-align: top;
+    border-top-width: 2px;
+    border-top-color: limegreen;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    border-bottom-width: 2px;
+    border-bottom-color: red;
+    background-color: #FFF;
+}
+
+.dashboardList a {
+    color: lightseagreen !important;
+}
+
+.dashboardList img{
+    background-color: gold;
+    border-radius:50%;
+    margin-bottom:10px;
+}
+.recentEntries {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.recentSection:first-child {
+    padding-top: 20px;
+}
+
+.recentEntries .recentPod:nth-of-type(n+1) {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.recentEntries .recentPod {
+    background-color: #fff;
+    border: 1px solid;
+    width: calc((100%/3) - 14px);
+    text-align: left;
+    display: inline-block;
+    padding: 20px;
+    vertical-align: top;
+    margin-bottom: 30px;
+    border-top-width: 2px;
+    border-top-color: limegreen;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    border-bottom-width: 2px;
+    border-bottom-color: red;
+}
+
+.recentEntries .podTitle {
+    font-weight: bold;
+    height: 40px;
+    text-transform: uppercase;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.recentEntries .secondPodContent {
+    height: 40px;
+    overflow: hidden;
+}
+
+.recentEntries .pod-link {
+    color: lightseagreen !important;
+    font-weight: bold;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.main-link {
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: lightseagreen;
+}
+
+.main-link:hover, a:hover{
+    text-decoration:none;
+    color:green;
+    cursor:pointer;
+}
+
+.btn-edit:before {
+    font-family: "Glyphicons Halflings";
+    content: "\270f ";
+}
+
+.btn-archive:before {
+    font-family: "Glyphicons Halflings";
+    content: "\e117";
+}
+
+.btn-view:before {
+    font-family: "Glyphicons Halflings";
+    content: "\e105";
+}
+
+.icon-inline{
+    display:inline-block;
+}
+
+.sm-icon{
+    max-width:50px;
+}
+
+.md-icon{
+    max-width:80px;
+}
+
+.public-form{
+    position:relative;
+}
+
+.form-small {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn{
+    font-family:monospace;
+}
+
+.activityLogs {
+    padding-top: 30px;
+}
+
+@media screen and (max-width: 991px) {
+    .dashboardList li {
+        width: 100%;
+    }
+
+    .recentEntries .recentPod {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width:767px)
+{
+    .icon-inline{
+        display:block;
+    }
+    .grid{
+        margin-top:15px!important;
+    }
+
+    .form-small{
+        width:90% !important;
+    }
+
+    footer {
+        font-size:12px;
+    }
+
+    .icon-inline input[type=radio] {
+        width: auto !important;
+    }
+
+    .dashboardList{
+        padding:0px !important;
+    }
+
+    .dashboardList li{
+        margin-left:0px !important;
+        margin-top:0px !important;
+    }
+
+    .btn{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    h2{
+        font-size:20px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .dashboardList li {
+        margin: 0;
+        margin-bottom: 20px;
+        width: calc((100%/3) - 20px);
+    }
+
+    .dashboardList {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+}
+
+@media screen and (max-width:1200px)
+{
+    .dashboardList {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .form-small {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:1201px)
+{
+    .form-small {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+

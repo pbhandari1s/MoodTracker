@@ -225,9 +225,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\activity_list.png" />
+    <Content Include="Images\activity_type.png" />
+    <Content Include="Images\mood1.png" />
+    <Content Include="Images\mood2.png" />
+    <Content Include="Images\mood3.png" />
+    <Content Include="Images\mood4.png" />
+    <Content Include="Images\mood5.png" />
+    <Content Include="Images\mood_bg.jpg" />
+    <Content Include="Images\mood_tracker_logo.png" />
+    <Content Include="Images\new_activity.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Design.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -290,6 +301,8 @@
     <Content Include="Views\ActivityLog\Archive.cshtml" />
     <Content Include="Views\ActivityLog\Delete.cshtml" />
     <Content Include="Views\ActivityLog\Unarchive.cshtml" />
+    <Content Include="Views\Account\LogoutConfirmation.cshtml" />
+    <Content Include="Views\Activity\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

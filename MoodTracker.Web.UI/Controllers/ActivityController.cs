@@ -28,7 +28,9 @@ namespace MoodTracker.Web.UI.Controllers
 
         public ActionResult Create()
         {
-            var activity = new ActivityViewModel();
+            var activity = new ActivityViewModel() {
+                DueDate = DateTime.Now
+            };
             var activityTypes = ActivityTypeService.GetAllActive();
             ViewBag.ActivityTypes = new SelectList(activityTypes, "Id", "Type");
             return View(activity);
@@ -178,6 +180,18 @@ namespace MoodTracker.Web.UI.Controllers
                 };
                 return View(activity);
             }
+        }
+
+        public ActionResult Detail(int id=0)
+        {
+            if (id > 0)
+            {
+                var activityDetail = ActivityService.GetById(id);
+
+                return View(activityDetail);
+            }
+            else
+                return RedirectToAction("index", "activity");
         }
     }
 }

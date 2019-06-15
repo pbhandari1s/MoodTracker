@@ -1,0 +1,108 @@
+﻿@model MoodTracker.Entities.ViewModel.ActivityViewModel
+@{
+    ViewBag.Title = "Detail";
+    var initialMood = "~/Images/mood" + Model.InitialMood + ".png";
+}
+
+    <div class="form-big">
+        <h2>Activity Information</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <u>Activity Title</u>
+                <br />
+                @Model.Title
+            </div>
+
+            <div class="col-lg-6">
+                <u>Activity Type</u>
+                <br/>
+                @Model.ActivityType
+            </div>
+
+            <div class="col-lg-6">
+                <u>Grade Worth</u>
+                <br/>
+                @Model.GradeWorth
+            </div>
+
+            <div class="col-lg-6">
+                <u>Course Info</u>
+                <br/>
+                @Model.CourseInfo
+            </div>
+
+            <div class="col-lg-6">
+                <u>Initial Mood</u>
+                <br/>
+                <img src=@Url.Content(initialMood) alt="Mood Icon" class="md-icon" />
+            </div>
+
+            <div class="col-lg-6">
+                <u>Due Date</u>
+                <br/>
+                @Model.DueDate
+            </div>
+        </div>
+
+        <div class="activityLogs">
+            @if (Model.ActivityLogs.Count() > 0)
+            {
+                <h2>Activity Logs for @Model.Title</h2>
+                @Html.ActionLink("+Add New Log", "create", "activitylog", new { id = Model.Id }, new { @class = "main-link" })
+
+                <div class="grid">
+                    <div class="row gridHeading hidden-xs">
+                        <div class="col-sm-2">
+                            Date Added
+                        </div>
+                        <div class="col-sm-2">
+                            <b>Mood</b>
+                        </div>
+                        <div class="col-sm-4">
+                            <b>Note</b>
+                        </div>
+                    </div>
+                    <div class="recentActivities">
+                        @foreach (var activityLog in Model.ActivityLogs)
+                        {
+                            var imageName = "~/Images/mood" + @activityLog.Mood + ".png";
+                            <div class="row gridRow">
+                                <div class="col-sm-2">
+                                    <span class="visible-xs"><u>Creation Stamp</u></span>
+                                    @activityLog.CreationStamp
+                                </div>
+                                <div class="col-sm-2">
+                                    <div>
+                                        <span class="visible-xs"><u>Mood</u></span>
+                                        <img src=@Url.Content(imageName) alt="Mood Icon" class="sm-icon" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div>
+                                        <span class="visible-xs"><u>Note</u></span>
+                                        @activityLog.Note
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                    @Html.ActionLink(" Edit", "edit", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-edit" })
+                                    @Html.ActionLink(" Archive", "archive", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-archive" })
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="backAction">
+                        @Html.ActionLink("<< Back to Activities List", "Index", "Activity")
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>There are no logs added for this activity. Please add activity logs as you participate in the activity.</p>
+                @Html.ActionLink("+Add New Log", "create", "activitylog", new { id = Model.Id }, new { @class = "main-link" })
+            }
+        </div>
+    </div>
+
+

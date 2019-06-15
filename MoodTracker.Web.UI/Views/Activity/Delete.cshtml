@@ -1,10 +1,10 @@
-﻿@model MoodTracker.Entities.ViewModel.ActivityDashboardViewModel
+﻿@model MoodTracker.Entities.ViewModel.ActivityBasicInfoViewModel
 
 @{
     ViewBag.Title = "Delete";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("delete", "activity", FormMethod.Post, new { @class="form-big"}))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
@@ -18,13 +18,16 @@
 
         <div class="row form">
             <div class="col-lg-12">
-                @Html.LabelFor(model => model.Title)
+                <div>
+                    <u>@Html.Label("Title")</u>
+                </div>
                 @Html.Label(Model.Title)
             </div>
         </div>
 
         <div class="form-action">
-            <input type="submit" value="Delete" class="btn btn-primary" />
+            <input type="submit" value="Delete" class="btn btn-primary btn-lg" />
+            @Html.ActionLink("Cancel", "index", "activity", null, new { @class = "btn btn-secondary btn-lg" })
         </div>
 
 

@@ -1,10 +1,10 @@
-﻿@model MoodTracker.Entities.ViewModel.ActivityDashboardViewModel
+﻿@model MoodTracker.Entities.ViewModel.ActivityBasicInfoViewModel
 
 @{
     ViewBag.Title = "Unarchive";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("unarchive", "activity", FormMethod.Post, new { @class="form-big"}))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
@@ -18,15 +18,17 @@
 
         <div class="row form">
             <div class="col-lg-12">
-                @Html.LabelFor(model => model.Title)
+                <div>
+                    <u>@Html.LabelFor(model => model.Title)</u>
+                </div>
                 @Html.Label(Model.Title)
             </div>
         </div>
 
         <div class="form-action">
-            <input type="submit" value="Unarchive" class="btn btn-primary" />
+            <input type="submit" value="Unarchive" class="btn btn-primary btn-lg" />
+            @Html.ActionLink("Cancel", "index", "activity", null, new { @class = "btn btn-secondary btn-lg" })
         </div>
-
 
         <div class="backAction">
             @Html.ActionLink("<< Back to Current List", "Index")

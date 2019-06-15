@@ -10,7 +10,7 @@
     });
 </script>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("create", "activity", FormMethod.Post, new { @class="form-big"}))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -28,14 +28,14 @@
 
         <div class="row form">
             <div class="col-lg-6">
-                @Html.LabelFor(model => model.ActivityTypeId)
+                @Html.Label("Activity Type")
                 <span class="required">*</span>
                 @Html.DropDownListFor(model => model.ActivityTypeId, ViewBag.ActivityTypes as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ActivityTypeId, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-lg-6">
-                @Html.LabelFor(model => model.Title)
+                @Html.Label("Title")
                 <span class="required">*</span>
                 @Html.EditorFor(model => model.Title)
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -43,39 +43,48 @@
         </div>
 
         <div class="row form">
-            <div class="col-lg-6">
-                @Html.LabelFor(model => model.GradeWorth)
+            <div class="col-lg-4">
+                @Html.Label("Grade Worth")
                 <span class="required">*</span>
                 @Html.EditorFor(model => model.GradeWorth)
                 @Html.ValidationMessageFor(model => model.GradeWorth, "", new { @class = "text-danger" })
             </div>
 
-            <div class="col-lg-6">
-                @Html.LabelFor(model => model.CourseInfo)
+            <div class="col-lg-4">
+                @Html.Label("Course Info")
                 <span class="required">*</span>
                 @Html.EditorFor(model => model.CourseInfo)
                 @Html.ValidationMessageFor(model => model.CourseInfo, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="row form">
-            <div class="col-lg-6">
-                @Html.LabelFor(model => model.InitialMood)
-                <span class="required">*</span>
-                @Html.EditorFor(model => model.InitialMood)
-                @Html.ValidationMessageFor(model => model.InitialMood, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col-lg-6" id="divDueDate">
-                @Html.LabelFor(model => model.DueDate)
+            <div class="col-lg-4" id="divDueDate">
+                @Html.Label("Due Date")
                 <span class="required">*</span>
                 @Html.EditorFor(model => model.DueDate)
                 @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="row form">
+            <div class="col-lg-12">
+                @Html.Label("Initial Mood (Please select your current mood about this activity)")
+                <span class="required">*</span>
+                <br />
+                @for (int i = 1; i <= 5; i++)
+                {
+                    var imageName = "~/Images/mood" + i + ".png";
+
+                    <div class="icon-inline">
+                        <img src=@Url.Content(imageName) alt="Mood Icon" />
+                        @Html.RadioButtonFor(model => model.InitialMood, i)
+                    </div>
+                }
+                @Html.ValidationMessageFor(model => model.InitialMood, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-action">
-            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="submit" value="Save" class="btn btn-primary btn-lg" />
+            @Html.ActionLink("Cancel", "index", "activity", null, new { @class = "btn btn-secondary btn-lg" })
         </div>
 
 

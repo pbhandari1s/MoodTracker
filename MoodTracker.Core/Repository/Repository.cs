@@ -22,6 +22,7 @@ namespace MoodTracker.Core.Repository
 
             _context = context.Context;
             this.DbSet = _context.Set<T>();
+            
         }
 
 

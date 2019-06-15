@@ -13,15 +13,13 @@ namespace MoodTracker.Data.Repository
 {
     public class ActivityTypeRepository : Repository<ActivityType, int>, IActivityTypeRepository
     {
-        private readonly IAuthenticatedUser<int> _authenticatedUsers;
-       
         public ActivityTypeRepository(IContext context) : base(context)
         {
         }
 
         public override IEnumerable<ActivityType> GetAll()
         {
-            return base.Get(x=>x.Addedby == _authenticatedUsers.Id, x => x.OrderBy(a => a.Type));
+            return base.Get(null, x => x.OrderBy(a => a.Type));
         }
     }
 }

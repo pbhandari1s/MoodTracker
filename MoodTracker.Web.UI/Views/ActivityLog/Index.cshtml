@@ -1,19 +1,59 @@
-﻿@model IEnumerable<MoodTracker.Entities.ViewModel.ActivityLogViewModel>
+﻿@model MoodTracker.Entities.ViewModel.ActivityLogIndexViewModel
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="recentActivities">
-    @foreach (var activityLog in Model)
-    {
-    <div class="col-lg-3">
-        @activityLog.Mood
-        <br />
-        @activityLog.Note
+<div class="form-big">
+    <h2>Activity Logs @Model.ActivityTitle</h2>
+    @Html.ActionLink("+Add New Log", "create", "activitylog", new { id = Model.ActivityId }, new { @class = "main-link" })
 
-        @Html.ActionLink("Edit", "edit", new { activityLog.Id })
-        @Html.ActionLink("Archive", "archive", new { activityLog.Id })
+    <div class="grid">
+        <div class="row gridHeading hidden-xs">
+            <div class="col-sm-2">
+                Date Added
+            </div>
+            <div class="col-sm-2">
+                <b>Mood</b>
+            </div>
+            <div class="col-sm-4">
+                <b>Note</b>
+            </div>
+        </div>
+        <div class="recentActivities">
+            @foreach (var activityLog in Model.ActivityLogs)
+            {
+                var imageName = "~/Images/mood" + @activityLog.Mood + ".png";
+                <div class="row gridRow">
+                    <div class="col-sm-2">
+                        <span class="visible-xs"><u>Creation Stamp</u></span>
+                        @activityLog.CreationStamp
+                    </div>
+                    <div class="col-sm-2">
+                        <div>
+                            <span class="visible-xs"><u>Mood</u></span>
+                            <img src=@Url.Content(imageName) alt="Mood Icon" class="sm-icon" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div>
+                            <span class="visible-xs"><u>Note</u></span>
+                            @activityLog.Note
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        @Html.ActionLink(" Edit", "edit", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-edit" })
+                        @Html.ActionLink(" Archive", "archive", new { activityLog.Id }, new { @class = "btn btn-sm btn-primary btn-archive" })
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="backAction">
+            @Html.ActionLink("<< Back to Activities List", "Index", "Activity")
+        </div>
     </div>
-    }
 </div>
+
+
 
